@@ -1,16 +1,25 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+export default {
+  async fetch(request, env, ctx) {
+    const url = new URL(request.url);
 
+    if (url.pathname === "/sitemap.xml") {
+      const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://lampiontogelnf.com/</loc>
+    <lastmod>2025-09-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+`;
 
-<url>
-  <loc>https://lampiontogelnf.com/</loc>
-  <lastmod>2025-09-20T04:20:06+00:00</lastmod>
-</url>
+      return new Response(sitemap, {
+        headers: {
+          "content-type": "application/xml; charset=UTF-8",
+        },
+      });
+    }
 
-
-</urlset>
+    return new Response("Not Found", { status: 404 });
+  },
+};
